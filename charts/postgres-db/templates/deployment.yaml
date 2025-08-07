@@ -15,28 +15,14 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:13
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 5432
+            - containerPort: {{ .Values.service.port }}
           env:
             - name: POSTGRES_USER
-              value: "myuser"
+              value: "{{ .Values.env.POSTGRES_USER }}"
             - name: POSTGRES_DB
-              value: "mydb"
+              value: "{{ .Values.env.POSTGRES_DB }}"
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: app-secret
-                  key: PGDB_PASSWORD
-          envFrom:
-            - configMapRef:
-                name: app-config
-
-
-
-
-
-
-
-
+              value: "{{ .Values.env.POSTGRES_PASSWORD }}"
 

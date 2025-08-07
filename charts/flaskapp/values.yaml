@@ -1,0 +1,15 @@
+image:
+  repository: jinitus/flask-app
+  tag: latest
+
+service:
+  type: NodePort
+  port: 5000
+  nodePort: 30001
+
+env:
+  PGDB_HOST: postgres.db.svc.cluster.local
+  PGDB_USER: myuser
+  PGDB_PASSWORD: mypassword
+  PGDB_NAME: mydb
+  REDIS_HOST: redis.redis.svc.cluster.local
